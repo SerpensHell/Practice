@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.remote.Browser;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -35,8 +37,14 @@ public class BrowserOptionsTest {
     public void browserOptionsTest() {
         driver.get("https://www.dns-shop.ru/");
         logger.info("Открыта страница DNS - " + "https://www.dns-shop.ru/");
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         // Ввод текста для поиска
-        String searchInputXpath = "(//*[@placeholder=\"Поиск по сайту\"])[2]";
+       String searchInputXpath = "(//*[@placeholder=\"Поиск по сайту\"])[2]";
         WebElement searchInput = driver.findElement(By.xpath(searchInputXpath));
         String searchText = "Samsung";
         searchInput.sendKeys(searchText);
@@ -53,20 +61,31 @@ public class BrowserOptionsTest {
     }
 
     public WebDriver getDriver() {
-        WebDriverManager.chromedriver().setup();
-        logger.info("Драйвер для браузера Google Chrome");
-        // Добавление свойств браузера Google Chrome (настройки сессии)
+       // WebDriverManager.chromedriver().setup();
+        //logger.info("Драйвер для браузера Google Chrome");
+
+        WebDriverManager.edgedriver().setup();
+        logger.info("Драйвер для браузера Microsoft Edge");
+        // Добавление свойств браузера (настройки сессии)
         // а) с помощью класса DesiredCapabilities и строковых параметров
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("unexpectedAlertBehaviour", "dismiss");
         capabilities.setCapability("unhandledPromptBehavior", "dismiss");
 
         // б) с помощью класса DesiredCapabilities и констант перечисления CapabilityType
-        capabilities.setCapability(CapabilityType.PLATFORM_NAME, Platform.WINDOWS);
-        capabilities.setCapability(CapabilityType.BROWSER_NAME, Browser.CHROME);
+        /*capabilities.setCapability(CapabilityType.PLATFORM_NAME, Platform.WINDOWS);
+        capabilities.setCapability(CapabilityType.BROWSER_NAME, Browser.CHROME);*/
 
-        // в) с помощью класса ChromeOptions и строковых параметров
+        capabilities.setCapability(CapabilityType.PLATFORM_NAME, Platform.WINDOWS);
+        capabilities.setCapability(CapabilityType.BROWSER_NAME, Browser.EDGE);
+
+        /*// в) с помощью класса ChromeOptions и строковых параметров
         ChromeOptions options = new ChromeOptions();
+        options.setCapability("pageLoadStrategy", PageLoadStrategy.NORMAL);
+        // options.setPageLoadStrategy(PageLoadStrategy.NORMAL);*/
+
+        // в) с помощью класса EdgeOptions и строковых параметров
+        EdgeOptions options = new EdgeOptions();
         options.setCapability("pageLoadStrategy", PageLoadStrategy.NORMAL);
         // options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
 
@@ -77,10 +96,11 @@ public class BrowserOptionsTest {
         // Добавление свойств (а) и (б)
         options.merge(capabilities);
 
-        // Добавление аргументов запуска Google Chrome
+        // Добавление аргументов запуска
         options.addArguments("--start-maximized");
         options.addArguments("--incognito");
 
-        return new ChromeDriver(options);
+        //return new ChromeDriver(options);
+        return new EdgeDriver(options);
     }
 }

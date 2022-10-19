@@ -13,7 +13,8 @@ public class CookiesTest {
     private Logger logger = LogManager.getLogger(CookiesTest.class);
 
     // Чтение передаваемого параметра browser (-Dbrowser)
-    String env = System.getProperty("browser", "chrome");
+   // String env = System.getProperty("browser", "chrome");
+    String env = System.getProperty("browser", "edge");
 
     @BeforeEach
     public void setUp() {

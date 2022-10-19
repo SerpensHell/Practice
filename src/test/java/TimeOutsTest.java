@@ -11,7 +11,8 @@ public class TimeOutsTest {
     protected static WebDriver driver;
     private Logger logger = LogManager.getLogger(TimeOutsTest.class);
     // Чтение передаваемого параметра browser (-Dbrowser)
-    String env = System.getProperty("browser", "chrome");
+    //String env = System.getProperty("browser", "chrome");
+    String env = System.getProperty("browser", "edge");
 
     @BeforeEach
     public void setUp() {
