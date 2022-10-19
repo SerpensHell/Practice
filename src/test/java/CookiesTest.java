@@ -1,16 +1,13 @@
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
-
-public class SampleTest {
+public class CookiesTest {
     protected static WebDriver driver;
-    private Logger logger = LogManager.getLogger(SampleTest.class);
+    private Logger logger = LogManager.getLogger(CookiesTest.class);
 
     // Чтение передаваемого параметра browser (-Dbrowser)
     String env = System.getProperty("browser", "chrome");
@@ -31,8 +28,8 @@ public class SampleTest {
     }
 
     @Test
-    public void openPage() {
-        driver.get("https://yandex.ru/");
-        logger.info("Открыта страница Yandex - " + "https://yandex.ru/");
+    public void cookiesTest(){
+        driver.get("https://www.dns-shop.ru/");
+        logger.info("Открыта страница DNS - " + "https://www.dns-shop.ru/");
     }
 }
