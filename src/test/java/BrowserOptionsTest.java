@@ -9,9 +9,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.Browser;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import static java.sql.DriverManager.getDriver;
 
@@ -44,7 +47,7 @@ public class BrowserOptionsTest {
         }
 
         // Ввод текста для поиска
-       String searchInputXpath = "(//*[@placeholder=\"Поиск по сайту\"])[2]";
+        String searchInputXpath = "(//*[@placeholder=\"Поиск по сайту\"])[2]";
         WebElement searchInput = driver.findElement(By.xpath(searchInputXpath));
         String searchText = "Samsung";
         searchInput.sendKeys(searchText);
@@ -63,44 +66,55 @@ public class BrowserOptionsTest {
     public WebDriver getDriver() {
        // WebDriverManager.chromedriver().setup();
         //logger.info("Драйвер для браузера Google Chrome");
+        System.setProperty("webdriver.gecko.driver", "D:\\ucheba_soft\\geckodriver-v0.32.0-win64\\geckodriver.exe");
+        FirefoxOptions options = new FirefoxOptions();
 
-        WebDriverManager.edgedriver().setup();
-        logger.info("Драйвер для браузера Microsoft Edge");
+        options.addArguments("-private");
+        options.addArguments("--kiosk");
+
+        return new FirefoxDriver(options);
+
+        //WebDriverManager.edgedriver().setup();
+        //logger.info("Драйвер для браузера Microsoft Edge");
+
+
+
         // Добавление свойств браузера (настройки сессии)
         // а) с помощью класса DesiredCapabilities и строковых параметров
-        DesiredCapabilities capabilities = new DesiredCapabilities();
+       /* DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("unexpectedAlertBehaviour", "dismiss");
-        capabilities.setCapability("unhandledPromptBehavior", "dismiss");
+        capabilities.setCapability("unhandledPromptBehavior", "dismiss");*/
 
         // б) с помощью класса DesiredCapabilities и констант перечисления CapabilityType
         /*capabilities.setCapability(CapabilityType.PLATFORM_NAME, Platform.WINDOWS);
-        capabilities.setCapability(CapabilityType.BROWSER_NAME, Browser.CHROME);*/
+        capabilities.setCapability(CapabilityType.BROWSER_NAME, Browser.CHROME);
 
         capabilities.setCapability(CapabilityType.PLATFORM_NAME, Platform.WINDOWS);
-        capabilities.setCapability(CapabilityType.BROWSER_NAME, Browser.EDGE);
+        capabilities.setCapability(CapabilityType.BROWSER_NAME, Browser.EDGE);*/
 
         /*// в) с помощью класса ChromeOptions и строковых параметров
         ChromeOptions options = new ChromeOptions();
         options.setCapability("pageLoadStrategy", PageLoadStrategy.NORMAL);
-        // options.setPageLoadStrategy(PageLoadStrategy.NORMAL);*/
+        // options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
 
         // в) с помощью класса EdgeOptions и строковых параметров
         EdgeOptions options = new EdgeOptions();
         options.setCapability("pageLoadStrategy", PageLoadStrategy.NORMAL);
-        // options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+        // options.setPageLoadStrategy(PageLoadStrategy.NORMAL);*/
 
         // г) с помощью класса ChromeOptions и констант перечисления CapabilityType
-        options.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, false);
+       // options.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, false);
         // options.setAcceptInsecureCerts(false);
 
         // Добавление свойств (а) и (б)
-        options.merge(capabilities);
+       // options.merge(capabilities);
 
         // Добавление аргументов запуска
-        options.addArguments("--start-maximized");
-        options.addArguments("--incognito");
+      //  options.addArguments("--start-maximized");
+      //  options.addArguments("--incognito");
 
         //return new ChromeDriver(options);
-        return new EdgeDriver(options);
+      //  return new EdgeDriver(options);
+
     }
 }

@@ -13,7 +13,8 @@ public class WebDriverMethodsTest {
 
     // Чтение передаваемого параметра browser (-Dbrowser)
     //String env = System.getProperty("browser", "chrome");
-    String env = System.getProperty("browser", "edge");
+    //String env = System.getProperty("browser", "edge");
+    String env = System.getProperty("browser", "firefox");
 
     @BeforeEach
     public void setUp() {

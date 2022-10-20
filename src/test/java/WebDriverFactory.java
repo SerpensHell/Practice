@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
 
 public class WebDriverFactory {
@@ -20,9 +21,10 @@ public class WebDriverFactory {
                 return new ChromeDriver();
             // Создание драйвера для браузера Mozilla Firefox
             case "firefox":
-                WebDriverManager.firefoxdriver().setup();
+                System.setProperty("webdriver.gecko.driver", "D:\\ucheba_soft\\geckodriver-v0.32.0-win64\\geckodriver.exe");
+                FirefoxOptions options = new FirefoxOptions();
                 logger.info("Драйвер для браузера Mozilla Firefox");
-                return new FirefoxDriver();
+                return new FirefoxDriver(options) ;
             case "edge":
                 WebDriverManager.edgedriver().setup();;
                 logger.info("Драйвер браузера Microsoft Edge");

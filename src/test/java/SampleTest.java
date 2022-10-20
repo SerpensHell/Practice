@@ -13,7 +13,7 @@ public class SampleTest {
     private Logger logger = LogManager.getLogger(SampleTest.class);
 
     // Чтение передаваемого параметра browser (-Dbrowser)
-    String env = System.getProperty("browser", "chrome");
+    String env = System.getProperty("browser", "firefox");
 
     @BeforeEach
     public void setUp() {
