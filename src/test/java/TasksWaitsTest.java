@@ -13,7 +13,7 @@ import java.util.List;
 
 public class TasksWaitsTest {
     protected static WebDriver driver;
-    private Logger logger = LogManager.getLogger(ImplicitWaitsTest.class);
+    private Logger logger = LogManager.getLogger(TasksWaitsTest.class);
 
     @BeforeEach
     public void setUp() {
