@@ -21,6 +21,7 @@ public class WebDriverFactory {
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--ignore-certificate-errors");
                 options.addArguments("--start-maximized");
+                //options.addArguments("--headless");
                 logger.info("Драйвер для браузера Google Chrome");
                 return new ChromeDriver(options);
             // Создание драйвера для браузера Mozilla Firefox
